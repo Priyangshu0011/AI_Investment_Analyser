@@ -20,7 +20,7 @@ const getFinancialFundamentals = tool(
       );
       const data = await response.json();
 
-      if (!data || Object.keys(data).length === 0 || data.Information) {
+      if (!data || Object.keys(data).length === 0 || data.Information || data.Note || data["Note"]) {
         return `Could not find financial data for ${symbol}. It might not be a valid ticker or we hit a rate limit.`;
       }
 
