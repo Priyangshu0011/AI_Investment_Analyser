@@ -49,8 +49,9 @@ export default function App() {
     setResult(null);
 
     try {
-      // Connect to Express backend running on http://localhost:5050
-      const response = await fetch("http://localhost:5050/api/research", {
+      // Connect to Express backend (fallback to localhost for local development)
+      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:5050";
+      const response = await fetch(`${backendUrl}/api/research`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
