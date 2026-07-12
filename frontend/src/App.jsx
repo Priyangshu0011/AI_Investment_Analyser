@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { 
-  Search, 
-  TrendingUp, 
-  AlertCircle, 
-  ChevronDown, 
-  ChevronUp, 
-  DollarSign, 
-  PieChart, 
-  Users, 
+import {
+  Search,
+  TrendingUp,
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  DollarSign,
+  PieChart,
+  Users,
   Newspaper,
   Loader2,
   ShieldCheck,
@@ -20,7 +20,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [logs, setLogs] = useState([]);
   const [result, setResult] = useState(null);
-  
+
   const [expandedPanels, setExpandedPanels] = useState({
     financials: false,
     analyst: false,
@@ -80,7 +80,7 @@ export default function App() {
         for (const line of lines) {
           try {
             const parsed = JSON.parse(line);
-            
+
             if (parsed.type === "log") {
               setLogs((prev) => [...prev, parsed.message]);
             } else if (parsed.type === "result") {
@@ -136,15 +136,15 @@ export default function App() {
 
       {/* Main Container */}
       <div className="max-w-6xl w-full mx-auto px-4 py-8 flex-1 flex flex-col gap-8">
-        
+
         {/* Intro Hero Section */}
         <section className="text-center max-w-2xl mx-auto mt-4">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
             Intelligent Stock Due Diligence
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Input any company name. Our multi-step LangGraph agent running on Express will pull fundamentals, 
-            analyse Wall Street consensus, crawl recent news, and apply a strict, weighted scoring rubric.
+            Input any company name. Our multi-step LangGraph agent running on Express will pull fundamentals,
+            analyse Wall Street consensus, crawl recent news and apply a strict, weighted scoring rubric.
           </p>
         </section>
 
@@ -212,23 +212,21 @@ export default function App() {
         {/* Results Screen */}
         {result && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-2 animate-fadeIn">
-            
+
             {/* Left/Main Column: Verdict, Score Breakdown, and Synthesis */}
             <div className="lg:col-span-2 flex flex-col gap-6">
-              
+
               {/* Verdict Card */}
               <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 relative overflow-hidden backdrop-blur-sm">
-                
-                <div className={`absolute top-0 right-0 w-[200px] h-[200px] rounded-full blur-[100px] opacity-10 pointer-events-none ${
-                  decision?.verdict === "INVEST" ? "bg-emerald-400" : "bg-rose-400"
-                }`} />
+
+                <div className={`absolute top-0 right-0 w-[200px] h-[200px] rounded-full blur-[100px] opacity-10 pointer-events-none ${decision?.verdict === "INVEST" ? "bg-emerald-400" : "bg-rose-400"
+                  }`} />
 
                 <div className="shrink-0 text-center">
-                  <div className={`w-32 h-32 rounded-full border-4 flex flex-col justify-center items-center font-black text-2xl tracking-wider shadow-2xl transition duration-500 ${
-                    decision?.verdict === "INVEST"
+                  <div className={`w-32 h-32 rounded-full border-4 flex flex-col justify-center items-center font-black text-2xl tracking-wider shadow-2xl transition duration-500 ${decision?.verdict === "INVEST"
                       ? "border-emerald-500 bg-emerald-950/40 text-emerald-400 shadow-emerald-500/10"
                       : "border-rose-500 bg-rose-950/40 text-rose-400 shadow-rose-500/10"
-                  }`}>
+                    }`}>
                     <span className="text-xs uppercase tracking-widest opacity-70 font-bold mb-1">VERDICT</span>
                     {decision?.verdict}
                   </div>
@@ -246,17 +244,16 @@ export default function App() {
                   <p className="text-slate-300 text-sm leading-relaxed mb-4">
                     {decision?.reasoning}
                   </p>
-                  
+
                   <div>
                     <div className="flex justify-between items-center text-xs font-mono text-slate-400 mb-1.5">
                       <span>Model Confidence</span>
                       <span className="font-bold text-slate-200">{decision?.confidence}%</span>
                     </div>
                     <div className="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
-                      <div 
-                        className={`h-full rounded-full transition-all duration-1000 ${
-                          decision?.verdict === "INVEST" ? "bg-emerald-500" : "bg-rose-500"
-                        }`}
+                      <div
+                        className={`h-full rounded-full transition-all duration-1000 ${decision?.verdict === "INVEST" ? "bg-emerald-500" : "bg-rose-500"
+                          }`}
                         style={{ width: `${decision?.confidence}%` }}
                       />
                     </div>
@@ -270,7 +267,7 @@ export default function App() {
                   <ShieldCheck className="text-emerald-400" size={20} />
                   Rubric Score Card
                 </h3>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl">
                     <div className="flex justify-between items-start mb-1">
@@ -337,7 +334,7 @@ export default function App() {
                 <h3 className="text-sm font-mono uppercase tracking-wider text-slate-400 mb-1">
                   Key Metrics
                 </h3>
-                
+
                 <div className="bg-slate-950/50 border border-slate-800/60 p-4 rounded-2xl flex items-center gap-3">
                   <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl">
                     <DollarSign size={20} />
@@ -345,8 +342,8 @@ export default function App() {
                   <div>
                     <span className="text-xs text-slate-400 font-mono block">REVENUE (TTM)</span>
                     <span className="text-sm font-bold text-slate-200">
-                      {financialMetrics?.revenueTTM 
-                        ? `$${(Number(financialMetrics.revenueTTM) / 1e9).toFixed(2)}B` 
+                      {financialMetrics?.revenueTTM
+                        ? `$${(Number(financialMetrics.revenueTTM) / 1e9).toFixed(2)}B`
                         : "N/A"}
                     </span>
                   </div>
@@ -359,8 +356,8 @@ export default function App() {
                   <div>
                     <span className="text-xs text-slate-400 font-mono block">PROFIT MARGIN</span>
                     <span className="text-sm font-bold text-slate-200">
-                      {financialMetrics?.profitMargin 
-                        ? `${(Number(financialMetrics.profitMargin) * 100).toFixed(2)}%` 
+                      {financialMetrics?.profitMargin
+                        ? `${(Number(financialMetrics.profitMargin) * 100).toFixed(2)}%`
                         : "N/A"}
                     </span>
                   </div>
@@ -420,7 +417,7 @@ export default function App() {
         {result && (
           <section className="bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 max-w-6xl w-full mx-auto mt-4 backdrop-blur-sm">
             <h3 className="text-base font-bold text-white mb-4">Raw Node Extraction Details</h3>
-            
+
             <div className="space-y-3">
               <div className="border border-slate-800 rounded-2xl bg-slate-950/40 overflow-hidden">
                 <button
@@ -482,7 +479,7 @@ export default function App() {
 
       <footer className="border-t border-slate-800/80 bg-slate-950/40 text-center py-6 text-xs text-slate-500 font-mono mt-auto">
         <p>© {new Date().getFullYear()} Aegis Capital. All rights reserved.</p>
-        <p className="mt-1">Powered by LangGraph, LangChain, Express, and Gemini 2.5 Flash.</p>
+        <p className="mt-1">Powered by LangGraph, LangChain, Express and Gemini 2.5 Flash.</p>
       </footer>
     </div>
   );
