@@ -123,14 +123,14 @@ export default function App() {
           </div>
           <div>
             <h1 className="font-bold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              Antigravity Capital
+              Aegis Capital
             </h1>
             <p className="text-xs text-slate-400 font-mono">AI INVESTMENT RESEARCH AGENT</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-xs text-slate-300 font-mono">Express Node Backend Live</span>
+          <span className="text-xs text-slate-300 font-mono">AI Engine Online</span>
         </div>
       </header>
 
@@ -481,7 +481,7 @@ export default function App() {
       </div>
 
       <footer className="border-t border-slate-800/80 bg-slate-950/40 text-center py-6 text-xs text-slate-500 font-mono mt-auto">
-        <p>© {new Date().getFullYear()} Antigravity Capital. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Aegis Capital. All rights reserved.</p>
         <p className="mt-1">Powered by LangGraph, LangChain, Express, and Gemini 2.5 Flash.</p>
       </footer>
     </div>
