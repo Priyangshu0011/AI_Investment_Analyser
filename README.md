@@ -1,6 +1,6 @@
-# AI Investment Research Agent (JavaScript + React JSX)
+# Aegis Capital - AI Stock Research Agent (JavaScript + React JSX)
 
-A classic full-stack AI stock analysis agent that performs deep due diligence on a company. It gathers financial fundamentals, crawls recent news/sentiment, scrapes Wall Street analyst recommendations, and processes this data through a custom-weighted scoring rubric using **LangGraph.js**, **LangChain.js**, and **Google Gemini 2.5 Flash**.
+A premium, full-stack AI stock analysis agent that performs deep due diligence on a company. It gathers financial fundamentals, crawls recent news/sentiment, scrapes Wall Street analyst recommendations, and processes this data through a custom-weighted scoring rubric using **LangGraph.js**, **LangChain.js**, and **Google Gemini 1.5 Flash**.
 
 This project consists of:
 1. **Frontend:** React + JavaScript (Vite)
@@ -10,18 +10,19 @@ This project consists of:
 
 ## Overview
 
-The AI Investment Research Agent allows users to input any company name, triggers a multi-stage workflow, and streams live progress logs to a beautiful, modern React UI. The agent concludes with an explicit **INVEST** or **PASS** decision, supported by a weighted rubric and raw data inspection panels.
+Aegis Capital allows users to input any company name, triggers a multi-stage workflow, and streams live progress logs to a beautiful, glassmorphic React UI. The agent concludes with an explicit **INVEST** or **PASS** decision, supported by a weighted rubric and raw data inspection panels.
 
 ### Key Features
 - **Deterministic Multi-Stage Agentic Workflow:** Built using a LangGraph state machine.
-- **Real Data Sources:** Powered by Alpha Vantage, Finnhub, and Tavily search.
+- **Real-Time Data Integrations:** Powered by Alpha Vantage (financial fundamentals), Finnhub (analyst recommendations), and Tavily (search engine).
 - **Structured Scoring Rubric:** Applies weighted metrics (30% Financial Health, 25% Growth, 20% News, 25% Valuation vs Peers) via Gemini Structured Outputs.
 - **Event-Driven Progress Streaming:** Streams active execution status from the Express backend to the React frontend in real-time.
 - **Smart In-Memory Caching:** Automatically caches company queries for 10 minutes to protect free-tier API quotas.
+- **Rate-Limit Resilience (Simulation Fallback Mode):** If third-party API keys hit daily rate limits, the backend automatically intercepts the failure, alerts the UI, and streams a high-fidelity simulated analysis (configured for popular stocks like Apple, Tesla, Nvidia, and Microsoft) to keep the application 100% functional and interactive.
 
 ---
 
-## How to Run It
+## How to Run It Locally
 
 ### 1. Prerequisites
 Ensure you have [Node.js](https://nodejs.org/) (v18+) installed on your machine.
@@ -64,6 +65,27 @@ npm install
 npm run dev
 ```
 Open **`http://localhost:5173`** in your browser to view the website.
+
+---
+
+## Production Deployment Guide
+
+This project is optimized for deployment on cloud services:
+
+### 1. Backend (Deployed on Render)
+- **Service Type:** Web Service
+- **Build Command:** `npm install`
+- **Start Command:** `npm start` (Runs the production server script `node server.js` from the `backend` directory)
+- **Environment Variables:** Set your 4 API keys (`GOOGLE_API_KEY`, `ALPHA_VANTAGE_API_KEY`, etc.) in the Render Environment tab.
+
+### 2. Frontend (Deployed on Vercel)
+- **Framework Preset:** Vite
+- **Root Directory:** `frontend`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Environment Variables:** 
+  * Add the **`VITE_API_URL`** key.
+  * Set the value to your public Render backend URL (e.g., `https://ai-investment-analyser.onrender.com`). *Ensure there is no trailing slash.*
 
 ---
 
